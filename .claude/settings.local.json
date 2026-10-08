@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(psql --version)",
+      "Bash(openssl rand *)",
+      "Bash(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('base64'\\)\\)\")",
+      "Bash(docker --version)",
+      "Bash(winget --version)",
+      "Bash(winget search *)",
+      "Bash(choco --version)",
+      "Bash(npx prisma *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(vercel --version)",
+      "Bash(git --version)",
+      "Bash(Test-NetConnection -ComputerName \"ep-bold-leaf-at229d91.c-9.us-east-1.aws.neon.tech\" -Port 5432)",
+      "PowerShell(Test-NetConnection -ComputerName \"ep-bold-leaf-at229d91.c-9.us-east-1.aws.neon.tech\" -Port 5432 -WarningAction SilentlyContinue)",
+      "PowerShell($result = Test-NetConnection -ComputerName \"ep-bold-leaf-at229d91.c-9.us-east-1.aws.neon.tech\" -Port 5432 -WarningAction SilentlyContinue; Write-Output \"TCP: $\\($result.TcpTestSucceeded\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(vercel --prod --yes)",
+      "Bash(vercel env *)",
+      "Bash(curl -s -X POST https://api.cloudinary.com/v1_1/wlcd3y9y/upload_presets -u 945441213242162:FOBEdupytTyF_v_Eqmp9YFcPCwc -d 'name=ch_furniture_unsigned&unsigned=true&folder=ch-furniture')",
+      "Bash(xargs grep *)",
+      "WebFetch(domain:ch-furniture.vercel.app)",
+      "Bash(npx vercel *)",
+      "Bash(curl -o /dev/null -s -w \"DNS lookup: %{time_namelookup}s\\\\nTCP connect: %{time_connect}s\\\\nTLS handshake: %{time_appconnect}s\\\\nTime to first byte: %{time_starttransfer}s\\\\nTotal time: %{time_total}s\\\\nHTTP status: %{http_code}\\\\nDownload size: %{size_download} bytes\\\\n\" https://ch-furniture.vercel.app/)",
+      "Bash(curl -o /dev/null -s -w \"TTFB: %{time_starttransfer}s | Total: %{time_total}s | Size: %{size_download}b | Status: %{http_code}\\\\n\" https://ch-furniture.vercel.app/categories)",
+      "Bash(curl -o /dev/null -s -w \"TTFB: %{time_starttransfer}s | Total: %{time_total}s | Size: %{size_download}b | Status: %{http_code}\\\\n\" https://ch-furniture.vercel.app/about)",
+      "Bash(curl -o /dev/null -s -w \"TTFB: %{time_starttransfer}s | Total: %{size_download}b | Status: %{http_code}\\\\n\" https://ch-furniture.vercel.app/sitemap.xml)"
+    ]
+  }
+}
