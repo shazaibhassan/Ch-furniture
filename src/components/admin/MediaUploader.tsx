@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
+import imageCompression from "browser-image-compression";
 import { UploadCloud, Film, CheckCircle2, XCircle } from "lucide-react";
 
 export type UploadedMedia = { url: string; publicId: string; type: "image" | "video"; posterUrl?: string };
@@ -18,6 +19,19 @@ type FileState = {
 
 const CLOUD = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!;
 const PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!;
+const MAX_UNCOMPRESSED_IMAGE_BYTES = 300 * 1024;
+
+async function prepareUploadFile(file: File): Promise<File> {
+  if (!file.type.startsWith("image/") || file.size <= MAX_UNCOMPRESSED_IMAGE_BYTES) {
+    return file;
+  }
+
+  return imageCompression(file, {
+    maxSizeMB: 0.3,
+    maxWidthOrHeight: 1280,
+    useWebWorker: true,
+  });
+}
 
 async function uploadToCloudinary(
   file: File,
@@ -101,7 +115,8 @@ export function MediaUploader({
         filtered.map(async (file, i) => {
           const entry = entries[i];
           try {
-            const result = await uploadToCloudinary(file, (pct) => {
+            const uploadFile = await prepareUploadFile(file);
+            const result = await uploadToCloudinary(uploadFile, (pct) => {
               setFiles((p) =>
                 p.map((s) => (s.id === entry.id ? { ...s, progress: pct } : s))
               );
